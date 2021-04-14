@@ -1,4 +1,3 @@
----
 layout: single
 title: "제목"
 categories:
@@ -7,7 +6,6 @@ tags:
   - 태그들
 use_math: true
 comments: true
----
 
 
 # ImageNet Classification with Deep Convolutional
