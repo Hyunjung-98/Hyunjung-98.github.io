@@ -1,5 +1,5 @@
 # ImageNet Classification with Deep Convolutional
-Notes: AlexNet (현재 CNN의 기반이 되는 모델)
+현재 CNN의 기반이 되는 모델인 AlexNet 논문 리뷰를 하였습니다.
 
 Pdf: https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf
 
@@ -41,21 +41,15 @@ Pdf: https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Pap
 ### 3.1 ReLU Nonlinearlity
 
 - Saturating Nonlinear Activation functions
-    - $$
-      f(x) = tanh(x)
-      $$
+    - $$f(x) = tanh(x)$$
     
-    - $$
-      f(x) = sigmoid(x) = (1+e^{-x})^{-1}
-      $$
+    - $$f(x) = sigmoid(x) = (1+e^{-x})^{-1}$$
     
     - 느림
     
     - (x가 무한대로 갈 때 함수의 값이 특정 범위 내에서 움직이는 것)
 - Non-Saturating Nonlinear Activation functions
-    - $$
-      f(x) = ReLU(x) = max(0,x)
-      $$
+    - $$f(x) = ReLU(x) = max(0,x)$$
     
       빠름 (기울기가 0에 가까운 경우 제외됨)
     
