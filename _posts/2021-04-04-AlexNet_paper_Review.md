@@ -1,11 +1,13 @@
-layout: single
-title: "제목"
+---
+layout: post
+title: "ImageNet Classification with Deep Convolutional 리뷰"
 categories:
-  - 카테고리이름
-tags:
-  - 태그들
+  - 논문리뷰
 use_math: true
 comments: true
+---
+
+
 
 
 # ImageNet Classification with Deep Convolutional
