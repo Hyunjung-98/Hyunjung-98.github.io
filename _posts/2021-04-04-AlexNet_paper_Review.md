@@ -1,3 +1,15 @@
+---
+layout: single
+title: "제목"
+categories:
+  - 카테고리이름
+tags:
+  - 태그들
+use_math: true
+comments: true
+---
+
+
 # ImageNet Classification with Deep Convolutional
 현재 CNN의 기반이 되는 모델인 AlexNet 논문 리뷰를 하였습니다.
 
