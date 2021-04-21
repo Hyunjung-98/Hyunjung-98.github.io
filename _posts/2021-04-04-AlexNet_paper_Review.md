@@ -1,10 +1,3 @@
----
-layout: post
-title: "ImageNet Classification with Deep Convolutional 리뷰"
-use_math: true
-comments: true
----
-
 # ImageNet Classification with Deep Convolutional
 현재 CNN의 기반이 되는 모델인 AlexNet 논문 리뷰를 하였습니다.
 
@@ -62,7 +55,7 @@ Pdf: https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Pap
     
     - (x가 무한대로갈 때 함수의 값이 무한대로 가는 것)
 
-![Untitled.png](/assets/images/posts/2021-04-04/Untitled.png)
+![Untitled.png](/assets/images/posts/2021-04-04/0.png)
 
 ​						—————————— ReLU             - - - - - - - - - - - - - - tanh
 
@@ -98,7 +91,7 @@ $$
 
 - neuron의 ouput을 주변값과 평균내는 것
 
-[![Untitled 1.png](/assets/images/posts/2021-04-04/Untitled 1.png))
+[![Untitled 1.png](/assets/images/posts/2021-04-04/1.png))
 
 - 특정 노드의 출력이 주변에 비해 굉장히 크다면 학습시 이 노드에 편향될 수도 있는데, LRN은 이러한 효과를 억제시킬 수 있음
 - (현재는 batch norm, group norm 등 더 나은 normalization 기법이 있기 때문에 사용 X)
@@ -109,13 +102,13 @@ $$
 
     (stride < kernel)
 
-    ![Untitled 2.png](/assets/images/posts/2021-04-04/Untitled 2.png)
+    ![Untitled 2.png](/assets/images/posts/2021-04-04/2.png)
 
 - (현재는 잘 사용하지 않음)
 
 ### 3.5 Overall Architecture
 
-![Untitled 3.png](/assets/images/posts/2021-04-04/Untitled 3.png)
+![Untitled 3.png](/assets/images/posts/2021-04-04/3.png)
 
 - input layer - conv1 - maxpool1 - norm1 - conv2 - maxpool2 - norm2 - conv3 - conv4 - conv5 - maxpool3 - FC1 - FC2 - ouput layer
 
@@ -190,7 +183,7 @@ $$
     - RGB값에 PCA를 적용하여 RGB 각 색상에 대해 eigenvalue를 찾음.
     - eigen valude와 랜덤 변수 ~N(0,0.1)를 곱하여 RGB 값에 더해줌
 
-        ![Untitled 4.png](../assets/images/posts/2021-04-04/Untitled 4.png)
+        ![Untitled 4.png](../assets/images/posts/2021-04-04/4.png)
 
     - 조명의 영향과 색의 강도 변화에 대한 불변성을 지님
 
@@ -217,11 +210,11 @@ $$
 
 - Results on ILSVRC-2010
 
-    ![Untitled 5.png](/assets/images/posts/2021-04-04/Untitled 5.png)
+    ![Untitled 5.png](/assets/images/posts/2021-04-04/5.png)
 
 - Results on ILSVRC-2012
 
-    ![Untitled 6.png](/assets/images/posts/2021-04-04/Untitled 6.png)
+    ![Untitled 6.png](/assets/images/posts/2021-04-04/6.png)
 
     - 1 CNN: 논문에서 제시한 모델 (AlexNet)
     - 5 CNNs: 위의 모델 CNN 5개의 예측 결과를 평균낸 모델
@@ -232,21 +225,21 @@ $$
 
 - kernels on GPU1 & GPU2
 
-    ![Untitled 7.png](/assets/images/posts/2021-04-04/Untitled 7.png)
+    ![Untitled 7.png](/assets/images/posts/2021-04-04/7.png)
 
     - kernels on GPU1: (1~3행) color-agonostic (edge 위주)
     - kernels on GPU2: (4~6행) color-specific
 
 - Visualize Output
 
-    ![Untitled 8.png](/assets/images/posts/2021-04-04/Untitled 8.png)
+    ![Untitled 8.png](/assets/images/posts/2021-04-04/8.png)
 
     - 위중심에 있지 않은 object도 인식함.
     - label과 다르더라도 합리적임 (+top5에 있음)
 
 - Visualize Network
 
-    ![Untitled 9.png](/assets/images/posts/2021-04-04/Untitled 9.png)
+    ![Untitled 9.png](/assets/images/posts/2021-04-04/9.png)
 
     1열: train set
 
