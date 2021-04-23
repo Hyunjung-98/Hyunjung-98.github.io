@@ -50,7 +50,7 @@ use_math: true
     
     - (x가 무한대로 갈 때 함수의 값이 특정 범위 내에서 움직이는 것)
 - Non-Saturating Nonlinear Activation functions
-    - $$f(x) = ReLU(x) = max(0,x)$$
+    - $f(x) = ReLU(x) = max(0,x)$
     
       빠름 (기울기가 0에 가까운 경우 제외됨)
     
