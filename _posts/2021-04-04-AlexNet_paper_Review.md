@@ -1,3 +1,14 @@
+---
+title: "Jekyll Github 블로그에 MathJax로 수학식 표시하기"
+tags:
+  - Blog
+  - MathJax
+  - Jekyll
+  - LaTeX
+use_math: true
+---
+
+
 # ImageNet Classification with Deep Convolutional
 현재 CNN의 기반이 되는 모델인 AlexNet 논문 리뷰를 하였습니다.
 
