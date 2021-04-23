@@ -52,9 +52,9 @@ Pdf: https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Pap
 ### 3.1 ReLU Nonlinearlity
 
 - Saturating Nonlinear Activation functions
-    - $$f(x) = tanh(x)$$
+    - $f(x) = tanh(x)$
     
-    - $$f(x) = sigmoid(x) = (1+e^{-x})^{-1}$$
+    - $f(x) = sigmoid(x) = (1+e^{-x})^{-1}$
     
     - 느림
     
