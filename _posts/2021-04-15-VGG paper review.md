@@ -1,5 +1,11 @@
 ---
 title: "[논문리뷰] Very Deep Convolutional Networks for Large-Scale Image Recognition"
+categories:
+    - 논문리뷰
+tags:
+    - CNN
+    - paper review
+    - Computer Vision
 use_math: true
 ---
 

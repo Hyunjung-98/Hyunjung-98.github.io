@@ -1,5 +1,11 @@
 ---
 title: "[논문리뷰] Generative Adversarial Nets"
+categories:
+    - 논문리뷰
+tags:
+    - GAN
+    - paper review
+    - Computer Vision
 use_math: true
 ---
 
