@@ -1,5 +1,11 @@
 ---
 title: "[논문리뷰] ImageNet Classification with Deep Convolutional"
+categories:
+    - 논문리뷰
+tags:
+    - CNN
+    - paper review
+    - Computer Vision
 use_math: true
 ---
 
