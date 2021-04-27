@@ -76,7 +76,7 @@ error 25%에 ReLU가 훨씬 빨리 도달함
 
 ### 3.2 Training on Multiple GPUs
 
-- 2 GPU(GTX 580 (3GB))s
+- 2 GPUs: GTX 580 (3GB)
 - cross-GPU parallelization: host machine memory에 접근하지 않고 서로의 메모리에 접근 가능
 - GPU는 특정 layer에서만 서로 교류함
 - cross-validation 문제가 발생할 수 있지만, 계산에 유리
@@ -85,9 +85,7 @@ error 25%에 ReLU가 훨씬 빨리 도달함
 
 - ReLU는 일반적으로 normalization이 불필요하지만, 양수값을 input으로 받으면 그 값을 그대로 neuron에 전달하기 때문에 너무 큰 값이 전달되어 주변의 낮은 값이 neuron에 전달되지 못할 수 있음. 다음의 방법이 generalization을 도움
 
-$$
-b^{i}_{x,y} = a^{i}_{x,y}/(k+\alpha\sum\limits_{j=max(0,i-n/2)}^{min(N-1,i+n/2)}(a^{j}_{x,y})^2)^\beta
-$$
+$b^{i}_{x,y} = a^{i}_{x,y}/(k+\alpha\sum\limits_{j=max(0,i-n/2)}^{min(N-1,i+n/2)}(a^{j}_{x,y})^2)^\beta$
 
 
 
@@ -117,61 +115,61 @@ $$
 
 ![Untitled 3.png](/assets/images/posts/2021-04-04/3.png)
 
-- input layer - conv1 - maxpool1 - norm1 - conv2 - maxpool2 - norm2 - conv3 - conv4 - conv5 - maxpool3 - FC1 - FC2 - ouput layer
+- __input layer - conv1 - maxpool1 - norm1 - conv2 - maxpool2 - norm2 - conv3 - conv4 - conv5 - maxpool3 - FC1 - FC2 - ouput layer__
 
 - DIMENSIONS
     1. Input layer
-        - 224*224*3
+        - 224\*224\*3
     2. Conv1
         - 96 kernels of 11*11, s=4, p=0
-        - input : 224*224*3
-        - output : 55*55*96
+        - input : 224\*224\*3
+        - output : 55\*55\*96
     3. Maxpool1
         - 3*3 kernels, s=2
-        - input: 55*55*96
-        - output: 27*27*96
-        - $n_H*n_W*n_C$  —(pooling)—>   $[{n_H-f\over s}+1]*[{n_W-f\over s}+1]*n_C$
+        - input: 55\*55\*96
+        - output: 27\*27\*96
+        - $n_H\*n_W\*n_C  —(pooling)—>  [{n_H-f\over s}+1]\*[{n_W-f\over s}+1]\*n_C$
     4. Norm1
         - LRN
-        - input: 27*27*96
-        - ouput: 27*27*96
+        - input: 27\*27\*96
+        - ouput: 27\*27\*96
     5. Conv2
-        - 256 kernels of size 5*5, s=1, p=2
-        - input: 27*27*96
-        - output: 27*27*256
+        - 256 kernels of size 5\*5, s=1, p=2
+        - input: 27\*27\*96
+        - output: 27\*27\*256
     6. MaxPool2
         - 3*3 kernels, s=2
-        - input: 27*27*256
-        - output: 13*13*256
+        - input: 27\*27\*256
+        - output: 13\*13\*256
     7. Norm2
         - LRN
-        - input: 13*13*256
-        - output: 13*13*256
+        - input: 13\*13\*256
+        - output: 13\*13\*256
     8. Conv3
         - 384 kernels of size 3*3, s=1, p=1
-        - input: 13*13*256
-        - output: 13*13*386
+        - input: 13\*13\*256
+        - output: 13\*13\*386
     9. Conv4
         - 384 kernels of size 3*3, s=1, p=1
-        - input: 13*13*386
-        - output: 13*13*384
+        - input: 13\*13\*386
+        - output: 13\*13\*384
     10. Conv5
         - 256 kernels of size 3*3, s=1, p=1
-        - input: 13*13*384
-        - output: 13*13*256
+        - input: 13\*13\*384
+        - output: 13\*13\*256
     11. MaxPool3
         - 3*3 kernels, s=2
-        - input: 13*13*256
-        - output: 6*6*256
+        - input: 13\*13\*256
+        - output: 6\*6\*256
     12. FC1
-        - input: 6*6*256
+        - input: 6\*6\*256
         - output: 4096
         - (dropout)
     13. FC2
         - input: 4096
         - output: 4096
         - (dropout)
-    14. FC3(output layer)
+    14. FC3 (output layer)
         - FC w/ 1000-way softmax
         - input: 4096
         - output: 1000
@@ -190,7 +188,7 @@ $$
     - RGB값에 PCA를 적용하여 RGB 각 색상에 대해 eigenvalue를 찾음.
     - eigen valude와 랜덤 변수 ~N(0,0.1)를 곱하여 RGB 값에 더해줌
 
-        ![Untitled 4.png](../assets/images/posts/2021-04-04/4.png)
+        ![Untitled 4.png](/assets/images/posts/2021-04-04/4.png)
 
     - 조명의 영향과 색의 강도 변화에 대한 불변성을 지님
 

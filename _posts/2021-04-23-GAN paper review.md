@@ -38,24 +38,24 @@ use_math: true
 
 GAN 알고리즘의 loss function이자 objective function인 V(D,G)는 다음과 같다.
 
-$$min_Gmax_DV(D,G)=E_{x∼p_{data}(x)}[logD(x)]+E_{z∼p_z(z)}[log(1−D(G(z)))]$$
+$min_Gmax_DV(D,G)=E_{x∼p_{data}(x)}[logD(x)]+E_{z∼p_z(z)}[log(1−D(G(z)))]$
 
 V(D, G)를 최소화하는 G, V(D,G)를 최대화하는 D를 찾는 것이 모델 학습의 목적이다.
 
 여기서, notation에 대해 살펴보면 다음과 같다.
 
-- p_{data}: training data의 분포
-- p_g: G로 인해 생성된 데이터의 분포
-- z: 임의로 생성된 noise
-- p_z: noise variables의 분포
-- G(z): noise z로 생성한 데이터.  z를 매핑하여 x로 만드는 함수.
-- x: 실제 training 데이터(~p_{data}(x)이므로!)
-- D(x): 주어진 sample x가 p_g가 아닌 p_data에 있을 확률. output은 확률값인 scalar.
+- $p_{data}$: training data의 분포
+- $p_g$: $G$로 인해 생성된 데이터의 분포
+- $z$: 임의로 생성된 noise
+- $p_z$: noise variables의 분포
+- $G(z)$: noise $z$로 생성한 데이터.  z를 매핑하여 x로 만드는 함수.
+- $x$: 실제 training 데이터($~p_{data}(x)$이므로!)
+- $D(x)$: 주어진 sample $x$가 $p_g$가 아닌 $p_data$에 있을 확률. output은 확률값인 scalar.
 
 여기서 두 모델 D, G가 각각 원하는 것에 대해 살펴보자.
 
 1. D가 원하는 것
-    - $x~p_{data}$일 때, D(x)=1이 되길 원함 (⇒ log(1) = 0)
+    - $x \~ p_{data}$일 때, D(x)=1이 되길 원함 (⇒ log(1) = 0)
     - 이 때, 노이즈로 생성한 데이터 G(z)에 대해 D(G(z)) = 0이 되길 원함(⇒ log(1-0)=0)
     - V = 0일 때, D의 입장에서 V의 최댓값을 얻을 수 있음
 2. G가 원하는 것
@@ -69,24 +69,24 @@ V(D, G)를 최소화하는 G, V(D,G)를 최대화하는 D를 찾는 것이 모�
 
 여기서 아래 두 선은 z가 G를 통해 x로 매핑되는 것을 보여주고,
 
-검은 점선이 실제 데이터의 분포인 p_{data}, 초록 실선이 새로 만들어진 데이터의 분포인 p_g, 파란 점선이 데이터가 p_{data}에서 온 것인지에 대한 분포를 의미한다.
+검은 점선이 실제 데이터의 분포인 $p_{data}$, 초록 실선이 새로 만들어진 데이터의 분포인 $p_g$, 파란 점선이 데이터가 $p_{data}$에서 온 것인지에 대한 분포를 의미한다.
 
-- (a): 학습 초기. p_d와 p_{data}가 전혀 다르게 생김.
-- (b), (c): 학습 진행 중. 파란점선인 D가 실제 training data에서 온 데이터를 더 잘 예측하도록 학습되었기 때문에 더 스무스해짐. p_d와 p_{data}의 분포가 점점 닮아감.
-- (d): 학습 결과. p_d와 p_{data}가 동일해짐. 실제 training data와 G(z)가 너무 비슷하여 sample이 어디서 온 데이터인지 구분할 수 없게 되므로 D(x)=0.5가 됨.
+- (a): 학습 초기. $p_d$와 $p_{data}$가 전혀 다르게 생김.
+- (b), (c): 학습 진행 중. 파란점선인 D가 실제 training data에서 온 데이터를 더 잘 예측하도록 학습되었기 때문에 더 스무스해짐. $p_d$와 $p_{data}$의 분포가 점점 닮아감.
+- (d): 학습 결과. $p_d$와 $p_{data}$가 동일해짐. 실제 training data와 G(z)가 너무 비슷하여 sample이 어디서 온 데이터인지 구분할 수 없게 되므로 D(x)=0.5가 됨.
 
 따라서 학습의 최종 목표는 **p_d = p_{data}**가 되도록 하는 것, 즉 **D(x) = 0.5**가 되게 하는 것임을 알 수 있다.
 
 학습은 다음의 순서를 반복한다.
 
-1. k steps만큼 D를optimize
+1. k steps만큼 D를 optimize
 2. 1 step만큼 G를 optimize
 
-학습 초기에는 G의 성능이 좋지 않아 D가 높은 신뢰도로 reject할 수 있다. 이 때, log(1-D(G(z))) 로 계산하면 학습이 매우 느려진다. 따라서 log(1-D(G(z)))를 minimize하는 방향보다는, log(D(G(z)))를 maximize하는 방향으로 G 학습하여 학습 속도를 높인다.
+학습 초기에는 G의 성능이 좋지 않아 D가 높은 신뢰도로 reject할 수 있다. 이 때, $log(1-D(G(z)))$ 로 계산하면 학습이 매우 느려진다. 따라서 $log(1-D(G(z)))$를 minimize하는 방향보다는, $log(D(G(z)))$를 maximize하는 방향으로 G 학습하여 학습 속도를 높인다.
 
 ## Theoretical Results
 
-### 1. global optimum은 p_g = p_{data}인 위치에서 생김
+### 1. global optimum은 $p_g = p_{data}$인 위치에서 생김
 
 증명을 하기위해 하나의 명제에 대해 알아본다.
 
@@ -96,9 +96,9 @@ V(D, G)를 최소화하는 G, V(D,G)를 최대화하는 D를 찾는 것이 모�
 
 ![/assets/images/posts/2021-04-23/Untitled%202.png](/assets/images/posts/2021-04-23/Untitled%202.png)
 
-- a = p_{data}(x), b = p_{g(x)} 로 설정을 한다면, 위의 전제가 성립함을 확인할 수 있다.
+- $a = p_{data}(x)$, $b = p_{g(x)}$로 설정을 한다면, 위의 전제가 성립함을 확인할 수 있다.
 
-이 명제를 C(G) = max_DV(G,D)에 적용하면, 다음이 성립함을 확인할 수 있다. 
+이 명제를 $C(G) = max_DV(G,D)$에 적용하면, 다음이 성립함을 확인할 수 있다. 
 
 ![/assets/images/posts/2021-04-23/Untitled%203.png](/assets/images/posts/2021-04-23/Untitled%203.png)
 
@@ -108,17 +108,17 @@ V(D, G)를 최소화하는 G, V(D,G)를 최대화하는 D를 찾는 것이 모�
 
 을 보일 수 있다.
 
-p_g = p_{data}일 때, D*_G(x)=1/2임을 위에서 확인하였다. 
+$p_g = p_{data}$일 때, $D*_G(x)=1/2$임을 위에서 확인하였다. 
 
- D*_G(x)=1/2라고 한다면, 위의 식(4)에 의해 C(G) = -log4임을 확인할 수 있다.
+$D*_G(x)=1/2$라고 한다면, 위의 식(4)에 의해 $C(G) = -log4$임을 확인할 수 있다.
 
-이때의 값이 C(G)의 global minimum임을 확인하기 위해 D*_G(x)=1/2일 때의 식(4)를 변형하여 풀어주면 다음과 같다. 
+이때의 값이 C(G)의 global minimum임을 확인하기 위해 $D*_G(x)=1/2$일 때의 식(4)를 변형하여 풀어주면 다음과 같다. 
 
 ![/assets/images/posts/2021-04-23/Untitled%204.png](/assets/images/posts/2021-04-23//Untitled%204.png)
 
 KL(Kullback-Leibler divergence)와 JSD(Jensen-Shannen Divergence)의 개념이 생소하여, [Hyeongmin Lee님의 포스트](https://hyeongminlee.github.io/post/prob002_kld_jsd/)의 도움을 받아 이해했다.
 
-$KL(p_{data}||\frac {p_{data}+p_g}{2} ) = E[log(p_{data})-log(\frac {p_{data}+p_g}{2})] = E[log(2*pdata/(pdata+pg))] = log2 + E[log(pdata/(pdata+pg))]$ 이므로 위의 식이 성립함을 알 수 있다.
+$KL(p_{data}|\frac {p_{data}+p_g}{2} ) = E[log(p_{data})-log(\frac {p_{data}+p_g}{2})] = E[log(2*pdata/(pdata+pg))] = log2 + E[log(pdata/(pdata+pg))]$ 이므로 위의 식이 성립함을 알 수 있다.
 
 JSD는 항상 양수이고 두 distribution이 일치할 때만 0이므로 C∗=−log(4)가 C(G)의 global minimum이며 그 유일한 해가 pg=pdata임을 알 수 있다.
 

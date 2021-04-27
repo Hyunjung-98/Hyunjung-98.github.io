@@ -58,13 +58,9 @@ AlexNet 논문 리뷰에 이어 AlexNet 이후의 CNN 모델인 VGG 논문을 �
 - 기존의 논문들에서 첫 번째 레이어에서 비교전 큰 filters를 사용한 것에 비해, 이 논문에서 3x3의 filters를 전체 레이어에 사용
 - 3x3 conv-layer 2개를 쌓는 것이 5x5 conv-layer 1개를 사용하는 것보다 효과적임
 - 3x3 conv-layer 3개가 7x7 conv-layer 1개의 효과를 지님
-
-    ⇒ 효과?
-
     - making decision function more discriminative
     - decreasing the number of parameters
 - 1x1 conv layers
-    
     - increasing the non-linearity of the decision function w/o affecting the receptive filed of the con-layers
 
 ## 3. Classification Framework
@@ -76,7 +72,7 @@ AlexNet 논문 리뷰에 이어 AlexNet 이후의 CNN 모델인 VGG 논문을 �
 - Regularizaion
     - weight decay (L2 penalty)
     - 1st, 2nd FC-layers에서 0.5의 ratio로 dropout
-- learning rate: 초기값 $10^-2$로 설정. validation set accuracy에 변동이 없으면 10배씩 감소. 총 3번 감소됨.
+- learning rate: 초기값 $10^{-2}$로 설정. validation set accuracy에 변동이 없으면 10배씩 감소. 총 3번 감소됨.
 - 총 370K iters (74 epochs)
 - 기존 Alexnet 논문보다 paremeters 수가 더 많고 더 깊음에도 불구하고 convergion까지의 epoch 수 더 적음
     - grater depth와 smaller conv filter size에 대한 implicit regularisation
@@ -85,7 +81,7 @@ AlexNet 논문 리뷰에 이어 AlexNet 이후의 CNN 모델인 VGG 논문을 �
     - random initialization으로 configuration A부터 train
     - 더 깊은 네트워크를 train할 때 첫 4개의 conv-layers와 마지막 3개의 FC-layers를 configuartion A의 값으로 초기화. (중간의 layers는 randomly initalized)
     - pre-initialized layers에 대해서는 learning rate를 감소시키지 않음
-    - random initialization은 weights$~N(0, 10^-2)$를 따르도록 함.
+    - random initialization은 weights$~N(0, 10^{-2})$를 따르도록 함.
     - biases는 0으로 초기화
 - input data
     - 224x224의 input images를 얻기 위해 각 SGD iteration마다 training image를 randomly crop함
@@ -120,8 +116,8 @@ AlexNet 논문 리뷰에 이어 AlexNet 이후의 CNN 모델인 VGG 논문을 �
 ### 4.1 Single-scale Evaluation
 
 - test image size
-    - for fixed S ⇒ Q = S
-    - for jittered S $\in$ [S_min, S_max] ⇒ Q = (S_min + S_max)
+    - for fixed $S$ ; $Q = S$
+    - for jittered $S \in [S_min, S_max]$ ; $Q = (S_min + S_max)$
 
 ![Very%20Deep%20Convolutional%20Networks%20for%20Large-Scale%20I%2050eb8f02368e4b7f944b226b1e23d92f/Untitled%201.png](/assets/images/posts/2021-04-15/1.png)
 
@@ -136,8 +132,8 @@ AlexNet 논문 리뷰에 이어 AlexNet 이후의 CNN 모델인 VGG 논문을 �
 
 - test image
     - 여러 rescaled version으로 train 후 class 평균 결과 산출
-    - for fixed S ⇒ Q = {S-32, S, S+32}
-    - for jittered S $\in$ [S_min, S_max] ⇒ Q = {S_min, (S_min + S_max)/2, S_max}
+    - for fixed $S$ ; $Q = {S-32, S, S+32}$
+    - for jittered $S \in [S_min, S_max]$ ; $Q = {S_min, (S_min + S_max)/2, S_max}$
 
 ![Very%20Deep%20Convolutional%20Networks%20for%20Large-Scale%20I%2050eb8f02368e4b7f944b226b1e23d92f/Untitled%202.png](/assets/images/posts/2021-04-15/2.png)
 
