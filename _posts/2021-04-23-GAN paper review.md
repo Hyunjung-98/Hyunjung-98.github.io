@@ -75,7 +75,7 @@ V(D, G)를 최소화하는 G, V(D,G)를 최대화하는 D를 찾는 것이 모�
 - (b), (c): 학습 진행 중. 파란점선인 D가 실제 training data에서 온 데이터를 더 잘 예측하도록 학습되었기 때문에 더 스무스해짐. $p_d$와 $p_{data}$의 분포가 점점 닮아감.
 - (d): 학습 결과. $p_d$와 $p_{data}$가 동일해짐. 실제 training data와 G(z)가 너무 비슷하여 sample이 어디서 온 데이터인지 구분할 수 없게 되므로 D(x)=0.5가 됨.
 
-따라서 학습의 최종 목표는 **p_d = p_{data}**가 되도록 하는 것, 즉 **D(x) = 0.5**가 되게 하는 것임을 알 수 있다.
+따라서 학습의 최종 목표는 **$p_d = p_{data}$**가 되도록 하는 것, 즉 **$D(x) = 0.5$**가 되게 하는 것임을 알 수 있다.
 
 학습은 다음의 순서를 반복한다.
 
@@ -120,7 +120,7 @@ KL(Kullback-Leibler divergence)와 JSD(Jensen-Shannen Divergence)의 개념이 �
 
 $KL(p_{data}|\frac {p_{data}+p_g}{2} ) = E[log(p_{data})-log(\frac {p_{data}+p_g}{2})] = E[log(2*pdata/(pdata+pg))] = log2 + E[log(pdata/(pdata+pg))]$ 이므로 위의 식이 성립함을 알 수 있다.
 
-JSD는 항상 양수이고 두 distribution이 일치할 때만 0이므로 C∗=−log(4)가 C(G)의 global minimum이며 그 유일한 해가 pg=pdata임을 알 수 있다.
+JSD는 항상 양수이고 두 distribution이 일치할 때만 0이므로 C^∗=−log(4)가 C(G)의 global minimum이며 그 유일한 해가 $p_g=p_{data}$임을 알 수 있다.
 
 ### 2. Algorithm1의 수렴
 

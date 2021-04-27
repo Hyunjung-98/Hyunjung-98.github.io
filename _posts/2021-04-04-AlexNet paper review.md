@@ -85,7 +85,9 @@ error 25%에 ReLU가 훨씬 빨리 도달함
 
 - ReLU는 일반적으로 normalization이 불필요하지만, 양수값을 input으로 받으면 그 값을 그대로 neuron에 전달하기 때문에 너무 큰 값이 전달되어 주변의 낮은 값이 neuron에 전달되지 못할 수 있음. 다음의 방법이 generalization을 도움
 
-$b^{i}_{x,y} = a^{i}_{x,y}/(k+\alpha\sum\limits_{j=max(0,i-n/2)}^{min(N-1,i+n/2)}(a^{j}_{x,y})^2)^\beta$
+$$ 
+b^{i}_{x,y} = a^{i}_{x,y}/(k+\alpha\sum\limits_{j=max(0,i-n/2)}^{min(N-1,i+n/2)}(a^{j}_{x,y})^2)^\beta
+$$
 
 
 

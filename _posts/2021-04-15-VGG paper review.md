@@ -23,9 +23,7 @@ AlexNet 논문 리뷰에 이어 AlexNet 이후의 CNN 모델인 VGG 논문을 �
     - 1st conv-layer에서 window size와 stride 크기 줄이기
     - whole image와 multiple scale를 사용하여 train & test
 - 이 논문에서 매우 작은 conv filters(3x3)를 모든 레이어에 적용
-
     ⇒ ILSVRC classification & localisation tasks에서 sota 달성
-
     ⇒ 다른 데이터셋어서도 좋은 성능 보임
 
 ## 2. ConvNet Configuration
@@ -92,7 +90,7 @@ AlexNet 논문 리뷰에 이어 AlexNet 이후의 CNN 모델인 VGG 논문을 �
     - S=224: crop은 이미지 전체를 잡을 것임
     - S>224: crop은 object part를 포함하는 이미지의 일부를 잡을 것임
     - S를 설정하는 두 가지 방법
-        1. single-scale traing. S를 모든 이미지에 대해 고정함. 논문에서는 우선 S=256으로 설정한 뒤, S=384로 설정함. S=384로 설정했을 때의 training 속도를 높이기 위해 S=256으로 설정했을 때의 weights로 intialize하고, learning rate를 $10^-3$으로 줄임.
+        1. single-scale traing. S를 모든 이미지에 대해 고정함. 논문에서는 우선 S=256으로 설정한 뒤, S=384로 설정함. S=384로 설정했을 때의 training 속도를 높이기 위해 S=256으로 설정했을 때의 weights로 intialize하고, learning rate를 $10^{-3}$으로 줄임.
         2. multi-scale training. 각 이미지의 S를 [S_min, S_max] 범위의 랜덤한 값으로 설정함. 이 논문에서는 [256, 512] 범위의 값을 사용함. 이미지마다 object 크기가 다를 수 있으므로, training 시 이를 고려함. (training set augmentation by scale jittering) 속도를 높이기 위해 S=384로 pretrain된 모델에 multi-scale을 적용함.
 
 ### 3.2 Testing
@@ -117,7 +115,7 @@ AlexNet 논문 리뷰에 이어 AlexNet 이후의 CNN 모델인 VGG 논문을 �
 
 - test image size
     - for fixed $S$ ; $Q = S$
-    - for jittered $S \in [S_min, S_max]$ ; $Q = (S_min + S_max)$
+    - for jittered $S \in [S_{min}, S_{max}]$ ; $Q = (S_{min} + S_{max})$
 
 ![Very%20Deep%20Convolutional%20Networks%20for%20Large-Scale%20I%2050eb8f02368e4b7f944b226b1e23d92f/Untitled%201.png](/assets/images/posts/2021-04-15/1.png)
 
@@ -125,7 +123,7 @@ AlexNet 논문 리뷰에 이어 AlexNet 이후의 CNN 모델인 VGG 논문을 �
 - depth가 증가하면 error 감소 : A → E로 갈수록 error 감소
 - additional non-linearlity 효과O : C 성능 > B 성능. C는 B에서 3개의 1x1 conv-layers 추가한 모델
 - non-trivial filters를 이용하여 spatial context 포착: D 성능 > C 성능. D는 C의 3개의 1x1 conv-layers를 모두 3x3 conv-layers로 변경한 모델
-- deep network w/ small filters > shallow network w/ large filters: 10개의 3x3 conv-layers를 가진 B와 5개의 5x5 conv-layers를 가진 모델을 비교했을 때, B의 성능 더 좋음
+- <U>deep network w/ small filters</U> > <U>shallow network w/ large filters</U>: 10개의 3x3 conv-layers를 가진 B와 5개의 5x5 conv-layers를 가진 모델을 비교했을 때, B의 성능 더 좋음
 - multi-scale training이 single-scale training보다 성능이 좋음
 
 ### 4.2 Multi-scale Evaluation
