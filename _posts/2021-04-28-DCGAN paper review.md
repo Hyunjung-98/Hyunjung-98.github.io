@@ -55,8 +55,8 @@ Parametric 분야에서 GAN의 등장이 있었으나, noisy하고 incomprehensi
     이를 generator에 활용하여 own spatial upsampling가 discriminator를 학습하도록 한다.
 
     > Strided Convolutions / Fractional-Strided Convolutions(Transposed Convs)
-    ![strided](/assets/images/posts/2021-04-28/strided.gif)
-    ![fractional_strided](/assets/images/posts/2021-04-28/fractional_strided.gif)
+    - Strided Convs: ![strided](/assets/images/posts/2021-04-28/strided.gif)
+    - Fractional-Strided Convs ![fractional_strided](/assets/images/posts/2021-04-28/fractional_strided.gif)
 
     - 파란색이 input, 초록색이 output
     - fractional-strided convs에서는 output의 크기가 input보다 커짐
